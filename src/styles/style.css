@@ -19,7 +19,7 @@ html, body
 
 p
 {
-	margin-bottom:20px;
+	white-space: pre-line;
 }
 
 a
