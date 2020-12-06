@@ -1,10 +1,10 @@
-import React from 'react'
-import {useGithubAuthRedirect} from 'react-tinacms-github'
+import React from 'react';
+import {useGithubAuthRedirect} from 'react-tinacms-github';
 
 const Authorizing = () => {
-	useGithubAuthRedirect()
+	useGithubAuthRedirect();
 
-	return <h2>Authorizing with GitHub, please wait...</h2>
-}
+	return <h2>Authorizing with GitHub, please wait...</h2>;
+};
 
-export default Authorizing
+export default Authorizing;
