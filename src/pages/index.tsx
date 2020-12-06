@@ -1,15 +1,9 @@
 import React from 'react';
 import {GetStaticProps} from 'next';
-import {usePlugin} from 'tinacms';
+import {usePlugin, Media} from 'tinacms';
 import styled from 'styled-components';
 import {getGithubPreviewProps, parseJson} from 'next-tinacms-github';
 import {useGithubJsonForm, useGithubToolbarPlugins} from 'react-tinacms-github';
-import {
-	InlineForm,
-	InlineTextarea,
-	InlineText,
-	InlineImageField
-} from 'react-tinacms-inline';
 import Layout from '../components/layout';
 
 const AboutUs = styled.div`
@@ -43,9 +37,9 @@ const formOptions = {
 			label: 'Map Image',
 			name: 'map',
 			component: 'image',
-			parse: (media) => `/static/${media.filename}`,
+			parse: (media: Media) => `/static/${media.filename}`,
 			uploadDir: () => '/public/static/',
-			previewSrc: (fullSrc) => fullSrc.replace('/public', '')
+			previewSrc: (fullSrc: string) => fullSrc.replace('/public', '')
 		}
 	]
 };
@@ -55,83 +49,78 @@ type IndexProps = {
 };
 
 const Index = ({file}: IndexProps) => {
-	const [, form] = useGithubJsonForm(file, formOptions);
+	const [data, form] = useGithubJsonForm(file, formOptions);
 	usePlugin(form);
 	useGithubToolbarPlugins();
 
 	return (
 		<Layout>
-			<InlineForm form={form}>
-				<hr />
+			<hr />
+
+			<p>{data.description}</p>
+
+			<hr />
+
+			<AboutUs>
+				<p>{data.openingTimes}</p>
+
+				<p>{data.address}</p>
+
+				<p>{data.phone}</p>
 
 				<p>
-					<InlineTextarea name="description" focusRing={false} />
+					<a href="#" id="email-link">
+						EMAIL US
+					</a>
 				</p>
 
-				<hr />
+				<form
+					method="post"
+					action="https://yellowbernard.com.au/index.php"
+					id="email-form"
+				>
+					<input type="hidden" name="send" value="1" />
 
-				<AboutUs>
-					<p>
-						<InlineText name="openingTimes" />
-					</p>
+					<div>
+						<label>NAME</label>
+						<input type="text" name="name" id="name" />
+					</div>
 
-					<p>
-						<InlineText name="address" />
-					</p>
+					<div>
+						<label>EMAIL</label>
+						<input type="text" name="email" id="email" />
+					</div>
 
-					<p>
-						<InlineText name="phone" />
-					</p>
+					<div>
+						<label>PHONE</label>
+						<input type="text" name="phone" id="phone" />
+					</div>
 
-					<p>
-						<a href="#" id="email-link">
-							EMAIL US
-						</a>
-					</p>
+					<div>
+						<label>MESSAGE</label>
+						<textarea name="message" id="message" />
+					</div>
 
-					<form
-						method="post"
-						action="https://yellowbernard.com.au/index.php"
-						id="email-form"
-					>
-						<input type="hidden" name="send" value="1" />
+					<div>
+						<input
+							type="submit"
+							name="send-button"
+							id="send-button"
+							className="button"
+							value="SEND"
+						/>
+					</div>
+				</form>
+			</AboutUs>
 
-						<div>
-							<label>NAME</label>
-							<input type="text" name="name" id="name" />
-						</div>
+			<hr />
 
-						<div>
-							<label>EMAIL</label>
-							<input type="text" name="email" id="email" />
-						</div>
-
-						<div>
-							<label>PHONE</label>
-							<input type="text" name="phone" id="phone" />
-						</div>
-
-						<div>
-							<label>MESSAGE</label>
-							<textarea name="message" id="message" />
-						</div>
-
-						<div>
-							<input
-								type="submit"
-								name="send-button"
-								id="send-button"
-								className="button"
-								value="SEND"
-							/>
-						</div>
-					</form>
-				</AboutUs>
-
-				<hr />
-
-				<InlineImageField name="map" />
-			</InlineForm>
+			<img
+				src={data.map}
+				alt="Map to Yellow Bernard"
+				width="238"
+				height="164"
+			/>
 		</Layout>
 	);
 };

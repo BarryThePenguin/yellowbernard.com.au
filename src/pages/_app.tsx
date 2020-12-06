@@ -26,7 +26,7 @@ export default class Site extends App<AppProps<SiteProps>> {
 			baseBranch: process.env.NEXT_PUBLIC_BASE_BRANCH
 		});
 
-		const enabled = true; // Boolean(props.pageProps.preview);
+		const enabled = Boolean(props.pageProps.preview);
 
 		console.log('pageProps', props);
 
