@@ -1,10 +1,45 @@
 import React from 'react';
+import styled, {createGlobalStyle} from 'styled-components';
 
-const Layout = ({children}) => {
+type LogoProps = {
+	logo?: string;
+};
+
+const Logo = styled.div<LogoProps>`
+	position: relative;
+	left: -460px;
+	background-image: url('${(props) => props.logo}');
+	background-repeat: no-repeat;
+	height: 111px;
+	width: 200px;
+`;
+
+type BackgroundProps = {
+	background?: string;
+};
+
+const Background = createGlobalStyle<BackgroundProps>`
+	body {
+		background-color: #000;
+		background-image: url('${(props) => props.background}');
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-position: top center;
+	}
+`;
+
+type LayoutProps = {
+	logo?: string;
+	background?: string;
+	children: React.ReactNode;
+};
+
+const Layout = ({logo, background, children}: LayoutProps) => {
 	return (
 		<div>
+			<Background background={background} />
 			<div id="logo-wrapper">
-				<div id="logo" />
+				<Logo id="logo" logo={logo} />
 			</div>
 
 			<div id="column-wrapper">

@@ -34,6 +34,22 @@ const formOptions = {
 			label: 'Phone Number'
 		},
 		{
+			label: 'Logo Image',
+			name: 'logo',
+			component: 'image',
+			parse: (media: Media) => `/static/${media.filename}`,
+			uploadDir: () => '/public/static/',
+			previewSrc: (fullSrc: string) => fullSrc.replace('/public', '')
+		},
+		{
+			label: 'Background Image',
+			name: 'map',
+			component: 'background',
+			parse: (media: Media) => `/static/${media.filename}`,
+			uploadDir: () => '/public/static/',
+			previewSrc: (fullSrc: string) => fullSrc.replace('/public', '')
+		},
+		{
 			label: 'Map Image',
 			name: 'map',
 			component: 'image',
@@ -54,7 +70,7 @@ const Index = ({file}: IndexProps) => {
 	useGithubToolbarPlugins();
 
 	return (
-		<Layout>
+		<Layout logo={data.logo} background={data.background}>
 			<hr />
 
 			<p>{data.description}</p>

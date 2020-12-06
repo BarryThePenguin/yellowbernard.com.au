@@ -3,5 +3,7 @@
   "openingTimes": "Monday - Friday | 7 - 2",
   "address": "109 Collins Street, Hobart",
   "phone": "(03) 6231 5207",
-  "map": "/static/map.png"
+  "map": "/static/map.png",
+  "logo": "/static/logo.png",
+  "background": "/static/bg.jpg"
 }

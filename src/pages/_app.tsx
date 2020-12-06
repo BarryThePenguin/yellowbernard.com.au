@@ -1,5 +1,6 @@
 import React from 'react';
 import App, {AppProps} from 'next/app';
+import styled from 'styled-components';
 import {TinaCMS, TinaProvider} from 'tinacms';
 import {
 	GithubClient,
@@ -11,6 +12,12 @@ import '../styles/style.css';
 type SiteProps = {
 	preview: boolean;
 };
+
+const EditButton = styled.button`
+	position: fixed;
+	top: 10px;
+	left: 10px;
+`;
 
 export default class Site extends App<AppProps<SiteProps>> {
 	cms: TinaCMS;
@@ -27,8 +34,6 @@ export default class Site extends App<AppProps<SiteProps>> {
 		});
 
 		const enabled = Boolean(props.pageProps.preview);
-
-		console.log('pageProps', props);
 
 		this.cms = new TinaCMS({
 			enabled,
@@ -50,8 +55,8 @@ export default class Site extends App<AppProps<SiteProps>> {
 					onLogin={onLogin}
 					onLogout={onLogout}
 				>
-					<EditLink cms={this.cms} />
 					<Component {...pageProps} />
+					<Edit cms={this.cms} />
 				</TinacmsGithubProvider>
 			</TinaProvider>
 		);
@@ -86,10 +91,10 @@ export interface EditLinkProps {
 	cms: TinaCMS;
 }
 
-export const EditLink = ({cms}: EditLinkProps) => {
+export const Edit = ({cms}: EditLinkProps) => {
 	return (
-		<button type="button" onClick={() => cms.toggle()}>
+		<EditButton type="button" onClick={() => cms.toggle()}>
 			{cms.enabled ? 'Exit Edit Mode' : 'Edit This Site'}
-		</button>
+		</EditButton>
 	);
 };
