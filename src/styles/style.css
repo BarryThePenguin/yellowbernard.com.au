@@ -1,0 +1,208 @@
+/* CSS Document */
+
+.clearing
+{
+	clear:both;
+}
+
+html, body
+{
+	background-color:#000;
+	background-image:url("../images/bg.jpg");
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-position:top center;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size:11px;
+	color:#FFF;
+}
+
+p
+{
+	margin-bottom:20px;
+}
+
+a
+{
+	color:#ffea00;
+	text-decoration:none;
+}
+
+a:hover
+{
+	text-decoration:underline;
+}
+
+a span
+{
+	color:#FFF;
+}
+
+hr
+{
+	width:100%;
+	height:2px;
+	border:0;
+	background-image:url("../images/dotted.png");
+	background-repeat:repeat-x;
+	margin-bottom:20px;
+}
+
+img
+{
+	margin-bottom:20px;
+}
+
+#logo-wrapper
+{
+	position:fixed;
+	top:0;
+	left:50%;
+}
+
+#logo
+{
+	position:relative;
+	left:-460px;
+	background-image:url("../images/logo.png");
+	background-repeat:no-repeat;
+	height:111px;
+	width:200px;
+}
+
+#column-wrapper
+{
+	width:916px;
+	margin:0 auto;
+}
+
+#column
+{
+	background-color:#000;	
+	background-color:rgba(0, 0, 0, 0.7);
+	float:right;
+	width:238px;
+	padding:20px;
+}
+
+/* Email form */
+
+form
+{
+	margin-bottom:20px;
+	display:none;
+}
+
+form div
+{
+	display:block;
+	margin-bottom:10px;
+}
+
+label
+{
+	display:block;
+}
+
+input
+{
+	font-size:14px;
+	display:block;
+	width:228px;
+	border:0;
+	padding:5px;
+}
+
+.button
+{
+	width:238px;
+	background-color:#333333;
+	color:#FFF;
+	cursor:pointer;
+}
+
+.button:hover
+{
+	background-color:#ffea00;
+	color:#000;
+}
+
+textarea
+{
+	width:228px;
+	height:150px;
+	border:0;
+	padding:5px;
+	font-size:13px;
+}
+
+/* Dialog box */
+
+#email-thanks
+{
+	padding:20px;
+	position:fixed;
+	top:200px;
+	left:55%;
+	background-color:#FFF;
+	color:#000;
+	width:238px;
+}
+
+/* For Facebook box */
+
+iframe
+{
+	background-color:#FFF;
+}
+
+@media screen and (max-width: 900px) {
+
+	#logo-wrapper
+	{
+		left:5%;
+	}
+	
+	#logo
+	{
+		left:0;
+	}
+	
+	#column-wrapper
+	{
+		width:90%;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	
+	html, body
+	{
+		background-size:960px 548px;
+	}
+
+	#logo-wrapper
+	{
+		left:0;
+		position:relative;
+		margin-bottom:300px;
+	}
+	
+	#logo
+	{
+		left:0;
+		margin-left:60px;
+	}
+	
+	#column-wrapper
+	{
+		width:320px;
+		margin:0;
+	}
+	
+	#column
+	{
+		float:none;
+		margin:0 21px;
+	}
+}

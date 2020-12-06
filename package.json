@@ -1,0 +1,54 @@
+{
+  "name": "yellowbernard.com.au",
+  "private": true,
+  "description": "Who is Yellow Bernard",
+  "license": "MIT",
+  "version": "0.1.0",
+  "author": {
+    "name": "Jonathan Haines",
+    "email": "jonno.haines@gmail.com",
+    "url": "https://jonno.dev/"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "export": "next export"
+  },
+  "dependencies": {
+    "final-form": "^4.20.1",
+    "next": "^10.0.3",
+    "next-tinacms-github": "^0.34.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-tinacms-github": "^0.34.0",
+    "react-tinacms-inline": "^0.34.0",
+    "styled-components": "^5.2.1",
+    "tinacms": "^0.34.0",
+    "typescript": "^4.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.10",
+    "@types/styled-components": "^5.1.4",
+    "eslint-config-xo": "^0.33.1",
+    "eslint-config-xo-react": "^0.23.0",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.2.1",
+    "webpack": "^4.44.2",
+    "xo": "^0.35.0"
+  },
+  "keywords": [
+    "next",
+    "tinacms"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BarryThePenguin/yellowbernard.com.au"
+  },
+  "xo": {
+    "extends": "xo-react",
+    "prettier": true,
+    "spaces": true
+  }
+}
