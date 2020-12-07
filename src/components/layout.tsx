@@ -45,7 +45,7 @@ const Layout = ({logo, background, children}: LayoutProps) => {
 					<Logo logo={logo} />
 				</div>
 
-				<div className="sm:max-w-xs bg-black bg-opacity-70 p-5">
+				<div className="w-min ml-auto bg-black bg-opacity-70 p-5">
 					<div className="prose prose-sm ">
 						{children}
 

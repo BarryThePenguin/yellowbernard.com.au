@@ -38,8 +38,8 @@ const formOptions = {
 		},
 		{
 			label: 'Background Image',
-			name: 'map',
-			component: 'background',
+			name: 'background',
+			component: 'image',
 			parse: (media: Media) => `/static/${media.filename}`,
 			uploadDir: () => '/public/static/',
 			previewSrc: (fullSrc: string) => fullSrc.replace('/public', '')
