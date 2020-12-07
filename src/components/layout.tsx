@@ -1,13 +1,15 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import styled, {createGlobalStyle} from 'styled-components';
+import FbPage from './fb-page';
+
+const EmailUs = dynamic(async () => import('./email-us'), {ssr: false});
 
 type LogoProps = {
 	logo?: string;
 };
 
 const Logo = styled.div<LogoProps>`
-	position: relative;
-	left: -460px;
 	background-image: url('${(props) => props.logo}');
 	background-repeat: no-repeat;
 	height: 111px;
@@ -36,49 +38,33 @@ type LayoutProps = {
 
 const Layout = ({logo, background, children}: LayoutProps) => {
 	return (
-		<div>
-			<Background background={background} />
-			<div id="logo-wrapper">
-				<Logo id="logo" logo={logo} />
-			</div>
+		<>
+			<div className="container max-w-screen-lg mx-auto px-4 flex flex-wrap justify-between">
+				<Background background={background} />
+				<div className="mb-6">
+					<Logo logo={logo} />
+				</div>
 
-			<div id="column-wrapper">
-				<div id="column">
-					{children}
+				<div className="sm:max-w-xs bg-black bg-opacity-70 p-5">
+					<div className=" prose prose-sm ">
+						{children}
 
-					<hr />
+						<hr />
 
-					<div
-						className="fb-page"
-						data-href="https://www.facebook.com/yellowbernard"
-						data-tabs="timeline"
-						data-width="238"
-						data-height=""
-						data-small-header="true"
-						data-adapt-container-width="true"
-						data-hide-cover="false"
-						data-show-facepile="true"
-					>
-						<blockquote
-							cite="https://www.facebook.com/yellowbernard"
-							className="fb-xfbml-parse-ignore"
-						>
-							<a href="https://www.facebook.com/yellowbernard">
-								Yellow Bernard
+						<FbPage />
+
+						<hr />
+
+						<p className="uppercase">
+							<a href="http://bluehat.com.au/">
+								<span className="text-gray-50">Website design by </span>Bluehat
 							</a>
-						</blockquote>
+						</p>
 					</div>
-
-					<hr />
-
-					<p>
-						<a href="http://bluehat.com.au/">
-							<span>WEBSITE DESIGN BY </span>BLUEHAT
-						</a>
-					</p>
 				</div>
 			</div>
-		</div>
+			<EmailUs />
+		</>
 	);
 };
 

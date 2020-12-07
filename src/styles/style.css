@@ -1,193 +1,69 @@
-/* CSS Document */
-
-.clearing
-{
-	clear:both;
-}
-
-html, body
-{
-	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
-	font-size:11px;
-	color:#FFF;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 p
 {
 	white-space: pre-line;
 }
 
-a
-{
-	color:#ffea00;
-	text-decoration:none;
-}
-
-a:hover
-{
-	text-decoration:underline;
-}
-
-a span
-{
-	color:#FFF;
-}
-
 hr
 {
-	width:100%;
 	height:2px;
 	border:0;
 	background-image:url("/static/dotted.png");
 	background-repeat:repeat-x;
-	margin-bottom:20px;
 }
 
-img
-{
-	margin-bottom:20px;
+.email-us__overlay {
+	@apply fixed inset-0 px-4 pb-4 opacity-0 pointer-events-none;
+	@apply transition-opacity duration-200 ease-in;
 }
 
-#logo-wrapper
-{
-	position:fixed;
-	top:0;
-	left:50%;
+@screen sm {
+	.email-us__overlay {
+		@apply flex items-center justify-center
+	}
 }
 
-#column-wrapper
-{
-	width:916px;
-	margin:0 auto;
-}
-
-#column
-{
-	background-color:#000;	
-	background-color:rgba(0, 0, 0, 0.7);
-	float:right;
-	width:238px;
-	padding:20px;
+.email-us__overlay:target {
+		@apply opacity-100 pointer-events-auto;
 }
 
 /* Email form */
 
-form
-{
-	margin-bottom:20px;
-	display:none;
+.email-us__close-button {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    z-index: 2000;
+    display: block;
+    width: 40px;
+    height: 40px;
 }
 
-form div
-{
-	display:block;
-	margin-bottom:10px;
+.email-us__close-button:before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: 4px;
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: #fff;
+    opacity: 0.8;
+    transform: rotate(45deg);
 }
 
-label
-{
-	display:block;
-}
-
-input
-{
-	font-size:14px;
-	display:block;
-	width:228px;
-	border:0;
-	padding:5px;
-}
-
-.button
-{
-	width:238px;
-	background-color:#333333;
-	color:#FFF;
-	cursor:pointer;
-}
-
-.button:hover
-{
-	background-color:#ffea00;
-	color:#000;
-}
-
-textarea
-{
-	width:228px;
-	height:150px;
-	border:0;
-	padding:5px;
-	font-size:13px;
-}
-
-/* Dialog box */
-
-#email-thanks
-{
-	padding:20px;
-	position:fixed;
-	top:200px;
-	left:55%;
-	background-color:#FFF;
-	color:#000;
-	width:238px;
-}
-
-/* For Facebook box */
-
-iframe
-{
-	background-color:#FFF;
-}
-
-@media screen and (max-width: 900px) {
-
-	#logo-wrapper
-	{
-		left:5%;
-	}
-	
-	#logo
-	{
-		left:0;
-	}
-	
-	#column-wrapper
-	{
-		width:90%;
-	}
-}
-
-@media screen and (max-width: 320px) {
-	
-	html, body
-	{
-		background-size:960px 548px;
-	}
-
-	#logo-wrapper
-	{
-		left:0;
-		position:relative;
-		margin-bottom:300px;
-	}
-	
-	#logo
-	{
-		left:0;
-		margin-left:60px;
-	}
-	
-	#column-wrapper
-	{
-		width:320px;
-		margin:0;
-	}
-	
-	#column
-	{
-		float:none;
-		margin:0 21px;
-	}
+.email-us__close-button:after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: 4px;
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: #fff;
+    opacity: 0.8;
+    transform: rotate(-45deg);
 }

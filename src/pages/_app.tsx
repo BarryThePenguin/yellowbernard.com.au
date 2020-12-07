@@ -10,7 +10,7 @@ import {
 import '../styles/style.css';
 
 type SiteProps = {
-	preview: boolean;
+	preview?: boolean;
 };
 
 const EditButton = styled.button`
@@ -28,9 +28,9 @@ export default class Site extends App<AppProps<SiteProps>> {
 		const github = new GithubClient({
 			proxy: '/api/proxy-github',
 			authCallbackRoute: '/api/create-github-access-token',
-			clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
-			baseRepoFullName: process.env.NEXT_PUBLIC_REPO_FULL_NAME,
-			baseBranch: process.env.NEXT_PUBLIC_BASE_BRANCH
+			clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID ?? '',
+			baseRepoFullName: process.env.NEXT_PUBLIC_REPO_FULL_NAME ?? '',
+			baseBranch: process.env.NEXT_PUBLIC_BASE_BRANCH ?? ''
 		});
 
 		const enabled = Boolean(props.pageProps.preview);
@@ -55,6 +55,14 @@ export default class Site extends App<AppProps<SiteProps>> {
 					onLogin={onLogin}
 					onLogout={onLogout}
 				>
+					<div id="fb-root" />
+					<script
+						async
+						defer
+						crossOrigin="anonymous"
+						src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0"
+						nonce="FQlOK0e0"
+					/>
 					<Component {...pageProps} />
 					<Edit cms={this.cms} />
 				</TinacmsGithubProvider>

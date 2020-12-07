@@ -1,14 +1,9 @@
 import React from 'react';
 import {GetStaticProps} from 'next';
 import {usePlugin, Media} from 'tinacms';
-import styled from 'styled-components';
 import {getGithubPreviewProps, parseJson} from 'next-tinacms-github';
 import {useGithubJsonForm, useGithubToolbarPlugins} from 'react-tinacms-github';
 import Layout from '../components/layout';
-
-const AboutUs = styled.div`
-	text-transform: uppercase;
-`;
 
 const formOptions = {
 	label: 'Home Page',
@@ -77,57 +72,21 @@ const Index = ({file}: IndexProps) => {
 
 			<hr />
 
-			<AboutUs>
-				<p>{data.openingTimes}</p>
-
-				<p>{data.address}</p>
-
-				<p>{data.phone}</p>
-
+			<div className="uppercase">
 				<p>
-					<a href="#" id="email-link">
-						EMAIL US
-					</a>
+					<span className="block">{data.openingTimes}</span>
+
+					<span className="block">{data.address}</span>
+
+					<span className="block">{data.phone}</span>
+
+					<span className="block">
+						<a href="#email-us" id="email-link">
+							Email us
+						</a>
+					</span>
 				</p>
-
-				<form
-					method="post"
-					action="https://yellowbernard.com.au/index.php"
-					id="email-form"
-				>
-					<input type="hidden" name="send" value="1" />
-
-					<div>
-						<label>NAME</label>
-						<input type="text" name="name" id="name" />
-					</div>
-
-					<div>
-						<label>EMAIL</label>
-						<input type="text" name="email" id="email" />
-					</div>
-
-					<div>
-						<label>PHONE</label>
-						<input type="text" name="phone" id="phone" />
-					</div>
-
-					<div>
-						<label>MESSAGE</label>
-						<textarea name="message" id="message" />
-					</div>
-
-					<div>
-						<input
-							type="submit"
-							name="send-button"
-							id="send-button"
-							className="button"
-							value="SEND"
-						/>
-					</div>
-				</form>
-			</AboutUs>
+			</div>
 
 			<hr />
 
@@ -145,8 +104,7 @@ export default Index;
 
 export const getStaticProps: GetStaticProps<IndexProps> = async function ({
 	preview,
-	previewData,
-	...ctx
+	previewData
 }) {
 	if (preview) {
 		return getGithubPreviewProps({

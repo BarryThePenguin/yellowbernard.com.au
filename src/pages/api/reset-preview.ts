@@ -1,5 +1,7 @@
-import {NextApiRequest, NextApiResponse} from 'next'
+import {NextApiRequest, NextApiResponse} from 'next';
 
-export default (_req: NextApiRequest, res: NextApiResponse) => {
-  res.clearPreviewData().status(200).end()
+function resetPreview(_request: NextApiRequest, response: NextApiResponse) {
+	response.clearPreviewData().status(200).end();
 }
+
+export default resetPreview;
