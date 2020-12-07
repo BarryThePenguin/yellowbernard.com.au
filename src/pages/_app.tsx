@@ -1,12 +1,15 @@
 import React from 'react';
 import App, {AppProps} from 'next/app';
+import Head from 'next/head';
 import styled from 'styled-components';
+import {DefaultSeo} from 'next-seo';
 import {TinaCMS, TinaProvider} from 'tinacms';
 import {
 	GithubClient,
 	TinacmsGithubProvider,
 	GithubMediaStore
 } from 'react-tinacms-github';
+import data from '../content/site-config.json';
 import '../styles/style.css';
 
 type SiteProps = {
@@ -55,6 +58,25 @@ export default class Site extends App<AppProps<SiteProps>> {
 					onLogin={onLogin}
 					onLogout={onLogout}
 				>
+					<DefaultSeo
+						title={data.seoDefaultTitle}
+						titleTemplate={`%s | ${data.title as string}`}
+						description={data.description}
+						openGraph={{
+							type: 'website',
+							locale: 'en_AU',
+							url: data.siteUrl,
+							site_name: data.title
+						}}
+						twitter={{
+							handle: data.social.twitterHandle,
+							site: data.social.twitterHandle,
+							cardType: 'summary_large_image'
+						}}
+					/>
+					<Head>
+						<meta name="theme-color" content="#FFEA00" />
+					</Head>
 					<div id="fb-root" />
 					<script
 						async

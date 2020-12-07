@@ -21,6 +21,7 @@
     "ky": "^0.25.0",
     "ky-universal": "^0.8.2",
     "next": "^10.0.3",
+    "next-seo": "^4.17.0",
     "next-tinacms-github": "^0.34.0",
     "postcss": "^8.1.14",
     "prop-types": "^15.7.2",
