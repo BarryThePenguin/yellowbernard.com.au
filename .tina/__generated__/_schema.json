@@ -1,0 +1,211 @@
+{
+  "collections": [
+    {
+      "label": "Pages",
+      "name": "pages",
+      "path": "content/pages",
+      "fields": [
+        {
+          "name": "description",
+          "label": "Description",
+          "type": "string",
+          "ui": {
+            "component": "textarea"
+          },
+          "namespace": [
+            "pages",
+            "description"
+          ]
+        },
+        {
+          "name": "openingTimes",
+          "label": "Opening Times",
+          "type": "string",
+          "ui": {
+            "component": "text"
+          },
+          "namespace": [
+            "pages",
+            "openingTimes"
+          ]
+        },
+        {
+          "name": "address",
+          "label": "Address",
+          "type": "string",
+          "ui": {
+            "component": "text"
+          },
+          "namespace": [
+            "pages",
+            "address"
+          ]
+        },
+        {
+          "name": "phone",
+          "label": "Phone Number",
+          "type": "string",
+          "ui": {
+            "component": "text"
+          },
+          "namespace": [
+            "pages",
+            "phone"
+          ]
+        },
+        {
+          "label": "Background Image",
+          "name": "background",
+          "type": "image",
+          "ui": {
+            "component": "image"
+          },
+          "namespace": [
+            "pages",
+            "background"
+          ]
+        },
+        {
+          "label": "Map Image",
+          "name": "map",
+          "type": "image",
+          "ui": {
+            "component": "image"
+          },
+          "namespace": [
+            "pages",
+            "map"
+          ]
+        }
+      ],
+      "namespace": [
+        "pages"
+      ]
+    },
+    {
+      "label": "Global",
+      "name": "global",
+      "path": "content/global",
+      "format": "json",
+      "fields": [
+        {
+          "name": "title",
+          "label": "Title",
+          "type": "string",
+          "ui": {
+            "component": "text"
+          },
+          "namespace": [
+            "global",
+            "title"
+          ]
+        },
+        {
+          "label": "Logo Image",
+          "name": "logo",
+          "type": "image",
+          "ui": {
+            "component": "image"
+          },
+          "namespace": [
+            "global",
+            "logo"
+          ]
+        },
+        {
+          "label": "Background Image",
+          "name": "background",
+          "type": "image",
+          "ui": {
+            "component": "image"
+          },
+          "namespace": [
+            "global",
+            "background"
+          ]
+        },
+        {
+          "name": "seoDefaultTitle",
+          "label": "SEO Default Title",
+          "type": "string",
+          "ui": {
+            "component": "text"
+          },
+          "namespace": [
+            "global",
+            "seoDefaultTitle"
+          ]
+        },
+        {
+          "name": "siteUrl",
+          "label": "Site Url",
+          "type": "string",
+          "ui": {
+            "component": "text"
+          },
+          "namespace": [
+            "global",
+            "siteUrl"
+          ]
+        },
+        {
+          "name": "keywords",
+          "label": "Keywords",
+          "type": "string",
+          "ui": {
+            "component": "text"
+          },
+          "namespace": [
+            "global",
+            "keywords"
+          ]
+        },
+        {
+          "type": "object",
+          "label": "Social Links",
+          "name": "social",
+          "fields": [
+            {
+              "type": "string",
+              "label": "Facebook",
+              "name": "facebook",
+              "namespace": [
+                "global",
+                "social",
+                "facebook"
+              ]
+            },
+            {
+              "type": "string",
+              "label": "Twitter",
+              "name": "twitter",
+              "namespace": [
+                "global",
+                "social",
+                "twitter"
+              ]
+            },
+            {
+              "type": "string",
+              "label": "Instagram",
+              "name": "instagram",
+              "namespace": [
+                "global",
+                "social",
+                "instagram"
+              ]
+            }
+          ],
+          "namespace": [
+            "global",
+            "social"
+          ]
+        }
+      ],
+      "namespace": [
+        "global"
+      ]
+    }
+  ],
+  "namespace": []
+}

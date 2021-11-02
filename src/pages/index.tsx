@@ -1,71 +1,17 @@
 import React from 'react';
 import {GetStaticProps} from 'next';
-import {usePlugin, Media} from 'tinacms';
-import {getGithubPreviewProps, parseJson} from 'next-tinacms-github';
-import {useGithubJsonForm, useGithubToolbarPlugins} from 'react-tinacms-github';
-import Layout from '../components/layout';
-
-const formOptions = {
-	label: 'Home Page',
-	fields: [
-		{
-			name: 'description',
-			component: 'textarea',
-			label: 'Description'
-		},
-		{
-			name: 'openingTimes',
-			component: 'text',
-			label: 'Opening Times'
-		},
-		{
-			name: 'address',
-			component: 'text',
-			label: 'Address'
-		},
-		{
-			name: 'phone',
-			component: 'text',
-			label: 'Phone Number'
-		},
-		{
-			label: 'Logo Image',
-			name: 'logo',
-			component: 'image',
-			parse: (media: Media) => `/static/${media.filename}`,
-			uploadDir: () => '/public/static/',
-			previewSrc: (fullSrc: string) => fullSrc.replace('/public', '')
-		},
-		{
-			label: 'Background Image',
-			name: 'background',
-			component: 'image',
-			parse: (media: Media) => `/static/${media.filename}`,
-			uploadDir: () => '/public/static/',
-			previewSrc: (fullSrc: string) => fullSrc.replace('/public', '')
-		},
-		{
-			label: 'Map Image',
-			name: 'map',
-			component: 'image',
-			parse: (media: Media) => `/static/${media.filename}`,
-			uploadDir: () => '/public/static/',
-			previewSrc: (fullSrc: string) => fullSrc.replace('/public', '')
-		}
-	]
-};
+import { getStaticPropsForTina } from "tinacms";
+import { layoutQueryFragment } from "../components/layout";
 
 type IndexProps = {
-	file: any;
+	data: any;
 };
 
-const Index = ({file}: IndexProps) => {
-	const [data, form] = useGithubJsonForm(file, formOptions);
-	usePlugin(form);
-	useGithubToolbarPlugins();
-
+const Index = (props: IndexProps) => {
+	const {data} = props.data.getPagesDocument
+	
 	return (
-		<Layout logo={data.logo} background={data.background}>
+		<>
 			<hr />
 
 			<p>{data.description}</p>
@@ -96,33 +42,38 @@ const Index = ({file}: IndexProps) => {
 				width="238"
 				height="164"
 			/>
-		</Layout>
+		</>
 	);
 };
 
 export default Index;
 
-export const getStaticProps: GetStaticProps<IndexProps> = async function ({
-	preview,
-	previewData
-}) {
-	if (preview) {
-		return getGithubPreviewProps({
-			...previewData,
-			fileRelativePath: 'src/content/home.json',
-			parse: parseJson
-		});
-	}
-
-	return {
-		props: {
-			sourceProvider: null,
-			error: null,
-			preview: false,
-			file: {
-				fileRelativePath: 'src/content/home.json',
-				data: (await import('../content/home.json')).default
+export const getStaticProps: GetStaticProps<IndexProps> = async function () {
+	const tinaProps = await getStaticPropsForTina({
+		query: `#graphql
+		query HomePage($relativePath: String!) {
+			${layoutQueryFragment}
+			getPagesDocument(relativePath: $relativePath) {
+				id
+				data {
+					description
+					openingTimes
+					address
+					phone
+					background
+					map
+				}
 			}
 		}
+		`,
+		variables: {
+			relativePath: "home.md"
+		}
+	});
+	
+	return {
+		props: {
+			...tinaProps,
+		},
 	};
 };

@@ -1,6 +1,9 @@
 import React from 'react';
+import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import {DefaultSeo} from 'next-seo';
 import styled, {createGlobalStyle} from 'styled-components';
+
 import FbPage from './fb-page';
 
 const EmailUs = dynamic(async () => import('./email-us'), {ssr: false});
@@ -31,18 +34,44 @@ const Background = createGlobalStyle<BackgroundProps>`
 `;
 
 type LayoutProps = {
-	logo?: string;
-	background?: string;
+	data: any;
 	children: React.ReactNode;
 };
 
-const Layout = ({logo, background, children}: LayoutProps) => {
+const Layout = ({data, children}: LayoutProps) => {
 	return (
 		<>
+			<DefaultSeo
+				title={data.seoDefaultTitle}
+				titleTemplate={`%s | ${data.title as string}`}
+				description={data.description}
+				openGraph={{
+					type: 'website',
+					locale: 'en_AU',
+					url: data.siteUrl,
+					site_name: data.title
+				}}
+				twitter={{
+					handle: data.social.twitterHandle,
+					site: data.social.twitterHandle,
+					cardType: 'summary_large_image'
+				}}
+			/>
+			<Head>
+				<meta name="theme-color" content="#FFEA00" />
+			</Head>
+			<div id="fb-root" />
+			<script
+				async
+				defer
+				crossOrigin="anonymous"
+				src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0"
+				nonce="FQlOK0e0"
+			/>
 			<div className="container max-w-screen-lg mx-auto px-4 flex flex-wrap justify-between">
-				<Background background={background} />
+				<Background background={data.background} />
 				<div className="mb-6">
-					<Logo logo={logo} />
+					<Logo logo={data.logo} />
 				</div>
 
 				<div className="max-w-xs ml-auto bg-black bg-opacity-70 p-5">
@@ -69,3 +98,22 @@ const Layout = ({logo, background, children}: LayoutProps) => {
 };
 
 export default Layout;
+
+export const layoutQueryFragment = `
+	getGlobalDocument(relativePath: "index.json") {
+		id
+		data {
+			title
+			logo
+			background
+			seoDefaultTitle
+			siteUrl
+			keywords
+			social {
+				facebook
+				twitter
+				instagram
+			}
+		}
+	}
+`;
