@@ -2,17 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-p
-{
+p {
 	white-space: pre-line;
 }
 
-hr
-{
+hr {
 	height:2px;
 	border:0;
 	background-image:url("/static/dotted.png");
 	background-repeat:repeat-x;
+}
+
+svg {
+	display: inline-block;
 }
 
 .email-us__overlay {

@@ -4,13 +4,9 @@ import Image from 'next/image';
 import {DefaultSeo} from 'next-seo';
 import layoutData from '../../content/global/index.json';
 
-import FbPage from './fb-page';
+import {Facebook, Instagram, Twitter} from './icons';
 
 const EmailUs = dynamic(async () => import('./email-us'), {ssr: false});
-
-type LogoProps = {
-	logo?: string;
-};
 
 type BackgroundProps = {
 	background?: string;
@@ -58,30 +54,57 @@ const Layout = ({data = layoutData, children}: LayoutProps) => (
 			src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0"
 			nonce="FQlOK0e0"
 		/>
+
 		<Background background={data.background} />
-		<div className="relative container max-w-screen-lg mx-auto px-4 flex flex-wrap justify-between">
-			<div className="mb-96">
-				<Image src={data.logo} width="200px" height="111px" />
-			</div>
 
-			<div className="max-w-xs ml-auto bg-black bg-opacity-70 mt-5 p-5">
-				<div className="prose prose-sm">
-					{children}
+		<div className="container sticky top-0 lg:max-w-screen-lg mx-auto mb-48">
+			<Image src={data.logo} width="200px" height="111px" />
+		</div>
 
-					<hr />
+		<div className="relative bg-gradient-to-t via-black from-black">
+			<div className="container mx-auto flex justify-center px-4">
+				<div className="mt-48 mb-10 p-5">
+					<div className="prose prose-xl text-center">
+				
+						{children}
+					
+						<hr />
+						
+						<p className="space-x-4">
+							{data.social.instagram && (
+								<a href={data.social.instagram} target="_blank" rel="noopener" aria-label={`${data.title} on Instagram`}>
+									<Instagram />
+								</a>
+							)}
+							
+							{data.social.facebook && (
+								<a href={data.social.facebook} target="_blank" rel="noopener" aria-label={`${data.title} on Facebook`}>
+									<Facebook />
+								</a>
+							)}
+							
+							{data.social.twitter && (
+								<a href={data.social.twitter} target="_blank" rel="noopener" aria-label={`${data.title} on Twitter`}>
+									<Twitter />
+								</a>
+							)}
+						</p>
 
-					<FbPage />
+						{false && (<hr />)}
 
-					<hr />
-
-					<p className="uppercase">
-						<a href="http://bluehat.com.au/">
-							<span className="text-gray-50">Website design by </span>Bluehat
-						</a>
-					</p>
+						{false && (
+							<p className="uppercase">
+								<a href="http://bluehat.com.au/">
+									<span className="text-gray-50">Website design by </span>Bluehat
+								</a>
+							</p>
+						)}
+					
+					</div>
 				</div>
 			</div>
 		</div>
+
 		<EmailUs />
 	</>
 );
