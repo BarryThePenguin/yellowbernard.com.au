@@ -119,6 +119,7 @@ type Global {
   logo: String
   background: String
   seoDefaultTitle: String
+  description: String
   siteUrl: String
   keywords: String
   social: GlobalSocial
@@ -179,6 +180,7 @@ input GlobalMutation {
   logo: String
   background: String
   seoDefaultTitle: String
+  description: String
   siteUrl: String
   keywords: String
   social: GlobalSocialMutation

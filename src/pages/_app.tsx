@@ -7,16 +7,18 @@ import '../styles/style.css';
 
 const TinaCMS = dynamic(async () => import('tinacms'), {ssr: false});
 
+const NEXT_PUBLIC_TINA_CLIENT_ID = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
+const NEXT_PUBLIC_USE_LOCAL_CLIENT =
+  process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT ?? true;
+
 const App = ({Component, pageProps}: AppProps) => (
 	<TinaEditProvider
 		editMode={
 			<TinaCMS
-				clientId={process.env.NEXT_PUBLIC_TINA_CLIENT_ID}
-				branch={process.env.NEXT_PUBLIC_EDIT_BRANCH}
+				clientId={NEXT_PUBLIC_TINA_CLIENT_ID}
+				branch="main"
 				organization={process.env.NEXT_PUBLIC_ORGANIZATION_NAME}
-				isLocalClient={Boolean(
-					Number(process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT ?? true)
-				)}
+				isLocalClient={Boolean(Number(NEXT_PUBLIC_USE_LOCAL_CLIENT))}
 				mediaStore={TinaCloudCloudinaryMediaStore}
 				{...pageProps}
 			>

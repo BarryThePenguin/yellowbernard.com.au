@@ -96,6 +96,15 @@ export default defineSchema({
           }
         },
         {
+          name: 'description',
+          label: 'Description',
+          type: "string",
+          ui: {
+            component: 'text',
+          }
+        },
+        
+        {
           name: 'siteUrl',
           label: 'Site Url',
           type: "string",

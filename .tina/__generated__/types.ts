@@ -204,6 +204,7 @@ export type Global = {
   logo?: Maybe<Scalars['String']>;
   background?: Maybe<Scalars['String']>;
   seoDefaultTitle?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
   siteUrl?: Maybe<Scalars['String']>;
   keywords?: Maybe<Scalars['String']>;
   social?: Maybe<GlobalSocial>;
@@ -313,6 +314,7 @@ export type GlobalMutation = {
   logo?: Maybe<Scalars['String']>;
   background?: Maybe<Scalars['String']>;
   seoDefaultTitle?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
   siteUrl?: Maybe<Scalars['String']>;
   keywords?: Maybe<Scalars['String']>;
   social?: Maybe<GlobalSocialMutation>;

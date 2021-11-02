@@ -2,6 +2,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import {DefaultSeo} from 'next-seo';
 import styled, {createGlobalStyle} from 'styled-components';
+import layoutData from '../../content/global/index.json';
 
 import FbPage from './fb-page';
 
@@ -38,7 +39,7 @@ type LayoutProps = {
 	children: React.ReactNode;
 };
 
-const Layout = ({data, children}: LayoutProps) => (
+const Layout = ({data = layoutData, children}: LayoutProps) => (
 	<>
 		<DefaultSeo
 			title={data.seoDefaultTitle}
@@ -105,6 +106,7 @@ export const layoutQueryFragment = `
 			logo
 			background
 			seoDefaultTitle
+			description
 			siteUrl
 			keywords
 			social {

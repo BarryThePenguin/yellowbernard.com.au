@@ -137,6 +137,18 @@
           ]
         },
         {
+          "name": "description",
+          "label": "Description",
+          "type": "string",
+          "ui": {
+            "component": "text"
+          },
+          "namespace": [
+            "global",
+            "description"
+          ]
+        },
+        {
           "name": "siteUrl",
           "label": "Site Url",
           "type": "string",
