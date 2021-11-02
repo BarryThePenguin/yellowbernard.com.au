@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import Image from 'next/image'
+import Image from 'next/image';
 import {DefaultSeo} from 'next-seo';
 import layoutData from '../../content/global/index.json';
 
@@ -12,13 +12,16 @@ type LogoProps = {
 	logo?: string;
 };
 
-const Logo = ({logo}: LogoProps) => <div className="bg-no-repeat" style={{backgroundImage: `url(${logo})`, width: '200px', height: '111px'}} />
-
 type BackgroundProps = {
 	background?: string;
 };
 
-const Background = ({background}: BackgroundProps) => <div className="bg-black bg-no-repeat bg-fixed bg-top fixed inset-0" style={{backgroundImage: `url(${background})`}} />
+const Background = ({background}: BackgroundProps) => (
+	<div
+		className="bg-black bg-no-repeat bg-fixed bg-cover bg-center fixed inset-0"
+		style={{backgroundImage: `url(${background})`}}
+	/>
+);
 
 type LayoutProps = {
 	data: any;
@@ -57,11 +60,11 @@ const Layout = ({data = layoutData, children}: LayoutProps) => (
 		/>
 		<Background background={data.background} />
 		<div className="relative container max-w-screen-lg mx-auto px-4 flex flex-wrap justify-between">
-			<div className="mb-6">
-				<Logo logo={data.logo} />
+			<div className="mb-96">
+				<Image src={data.logo} width="200px" height="111px" />
 			</div>
 
-			<div className="max-w-xs ml-auto bg-black bg-opacity-70 mt-96 md:mt-5 p-5">
+			<div className="max-w-xs ml-auto bg-black bg-opacity-70 mt-5 p-5">
 				<div className="prose prose-sm">
 					{children}
 
