@@ -5,7 +5,7 @@ description: >-
 
 
   We are driven by a passion for quality coffee. Our aim is to share that
-  passion by striving to produce remarkable coffee
+  passion by striving to produce remarkable coffee.
 openingTimes: Monday - Friday | 7 - 2
 address: '109 Collins Street, Hobart'
 phone: (03) 6231 5207
