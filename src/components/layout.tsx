@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import Image from 'next/image'
 import {DefaultSeo} from 'next-seo';
-import styled, {createGlobalStyle} from 'styled-components';
 import layoutData from '../../content/global/index.json';
 
 import FbPage from './fb-page';
@@ -12,26 +12,13 @@ type LogoProps = {
 	logo?: string;
 };
 
-const Logo = styled.div<LogoProps>`
-	background-image: url('${(props) => props.logo}');
-	background-repeat: no-repeat;
-	height: 111px;
-	width: 200px;
-`;
+const Logo = ({logo}: LogoProps) => <div className="bg-no-repeat" style={{backgroundImage: `url(${logo})`, width: '200px', height: '111px'}} />
 
 type BackgroundProps = {
 	background?: string;
 };
 
-const Background = createGlobalStyle<BackgroundProps>`
-	body {
-		background-color: #000;
-		background-image: url('${(props) => props.background}');
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		background-position: top center;
-	}
-`;
+const Background = ({background}: BackgroundProps) => <div className="bg-black bg-no-repeat bg-fixed bg-top fixed inset-0" style={{backgroundImage: `url(${background})`}} />
 
 type LayoutProps = {
 	data: any;
@@ -68,14 +55,14 @@ const Layout = ({data = layoutData, children}: LayoutProps) => (
 			src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0"
 			nonce="FQlOK0e0"
 		/>
-		<div className="container max-w-screen-lg mx-auto px-4 flex flex-wrap justify-between">
-			<Background background={data.background} />
+		<Background background={data.background} />
+		<div className="relative container max-w-screen-lg mx-auto px-4 flex flex-wrap justify-between">
 			<div className="mb-6">
 				<Logo logo={data.logo} />
 			</div>
 
-			<div className="max-w-xs ml-auto bg-black bg-opacity-70 p-5">
-				<div className="prose prose-sm ">
+			<div className="max-w-xs ml-auto bg-black bg-opacity-70 mt-96 p-5">
+				<div className="prose prose-sm">
 					{children}
 
 					<hr />
