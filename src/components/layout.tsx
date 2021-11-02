@@ -61,7 +61,7 @@ const Layout = ({data = layoutData, children}: LayoutProps) => (
 				<Logo logo={data.logo} />
 			</div>
 
-			<div className="max-w-xs ml-auto bg-black bg-opacity-70 mt-96 p-5">
+			<div className="max-w-xs ml-auto bg-black bg-opacity-70 mt-96 md:mt-5 p-5">
 				<div className="prose prose-sm">
 					{children}
 
