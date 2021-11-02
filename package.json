@@ -10,12 +10,9 @@
     "url": "https://jonno.dev/"
   },
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "export": "next export",
-    "tina-dev": "yarn tinacms server:start -c \"next dev\"",
-    "tina-build": "yarn tinacms server:start -c \"next build\"",
-    "tina-start": "yarn tinacms server:start -c \"next start\""
+    "dev": "tinacms server:start -c \"next dev\"",
+    "build": "tinacms server:start -c \"next build\"",
+    "start": "tinacms server:start -c \"next start\""
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.4.1",
