@@ -11,7 +11,7 @@ async function emailUs(request: NextApiRequest, response: NextApiResponse) {
 	const utf8Subject = `=?utf-8?B?${Buffer.from(subject).toString('base64')}?=`;
 
 	const messageParts = [
-		`From: ${body.name} <${body.email}>`,
+		`From: ${body.name ?? ''} <${body.email ?? ''}>`,
 		'To: Justin Beckwith <beckwith@google.com>',
 		'Content-Type: text/html; charset=utf-8',
 		'MIME-Version: 1.0',

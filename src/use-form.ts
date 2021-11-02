@@ -122,7 +122,7 @@ function useForm({onSubmit, validationMessages}: UseFormOptions) {
 	const [formState, dispatch] = useReducer(reducer, initialState);
 
 	const handleSubmit = useCallback(
-		async function (event: FormEvent<HTMLFormElement>) {
+		async (event: FormEvent<HTMLFormElement>) => {
 			event.preventDefault();
 			dispatch({type: 'submit'});
 
@@ -147,7 +147,7 @@ function useForm({onSubmit, validationMessages}: UseFormOptions) {
 	);
 
 	const handleBlur = useCallback(
-		function (event: FormEvent<HTMLFormElement>) {
+		(event: FormEvent<HTMLFormElement>) => {
 			if (isInputField(event.target)) {
 				const result = validateField(
 					event.currentTarget,

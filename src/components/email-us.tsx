@@ -1,4 +1,3 @@
-import React from 'react';
 import ky from 'ky-universal';
 import useForm from '../use-form';
 

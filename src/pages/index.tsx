@@ -1,15 +1,15 @@
-import React from 'react';
 import {GetStaticProps} from 'next';
-import { getStaticPropsForTina } from "tinacms";
-import { layoutQueryFragment } from "../components/layout";
+import Image from 'next/image';
+import {getStaticPropsForTina} from 'tinacms';
+import {layoutQueryFragment} from '../components/layout';
 
 type IndexProps = {
 	data: any;
 };
 
 const Index = (props: IndexProps) => {
-	const {data} = props.data.getPagesDocument
-	
+	const {data} = props.data.getPagesDocument;
+
 	return (
 		<>
 			<hr />
@@ -36,7 +36,7 @@ const Index = (props: IndexProps) => {
 
 			<hr />
 
-			<img
+			<Image
 				src={data.map}
 				alt="Map to Yellow Bernard"
 				width="238"
@@ -67,13 +67,13 @@ export const getStaticProps: GetStaticProps<IndexProps> = async function () {
 		}
 		`,
 		variables: {
-			relativePath: "home.md"
+			relativePath: 'home.md'
 		}
 	});
-	
+
 	return {
 		props: {
-			...tinaProps,
-		},
+			...tinaProps
+		}
 	};
 };
