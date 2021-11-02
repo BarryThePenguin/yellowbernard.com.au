@@ -8,17 +8,6 @@ import {Facebook, Instagram, Twitter} from './icons';
 
 const EmailUs = dynamic(async () => import('./email-us'), {ssr: false});
 
-type BackgroundProps = {
-	background?: string;
-};
-
-const Background = ({background}: BackgroundProps) => (
-	<div
-		className="bg-black bg-no-repeat bg-fixed bg-cover bg-center fixed inset-0"
-		style={{backgroundImage: `url(${background})`}}
-	/>
-);
-
 type LayoutProps = {
 	data: any;
 	rawData: any;
@@ -55,7 +44,7 @@ const Layout = ({data = layoutData, children}: LayoutProps) => (
 			nonce="FQlOK0e0"
 		/>
 
-		<Background background={data.background} />
+		<Image src={data.background} layout="fill" objectFit="cover" />
 
 		<div className="container sticky top-0 lg:max-w-screen-lg mx-auto mb-48">
 			<Image src={data.logo} width="200px" height="111px" />
@@ -65,41 +54,55 @@ const Layout = ({data = layoutData, children}: LayoutProps) => (
 			<div className="container mx-auto flex justify-center px-4">
 				<div className="mt-48 mb-10 p-5">
 					<div className="prose prose-xl text-center">
-				
 						{children}
-					
+
 						<hr />
-						
+
 						<p className="space-x-4">
 							{data.social.instagram && (
-								<a href={data.social.instagram} target="_blank" rel="noopener" aria-label={`${data.title} on Instagram`}>
+								<a
+									href={data.social.instagram}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={`${data.title} on Instagram`}
+								>
 									<Instagram />
 								</a>
 							)}
-							
+
 							{data.social.facebook && (
-								<a href={data.social.facebook} target="_blank" rel="noopener" aria-label={`${data.title} on Facebook`}>
+								<a
+									href={data.social.facebook}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={`${data.title} on Facebook`}
+								>
 									<Facebook />
 								</a>
 							)}
-							
+
 							{data.social.twitter && (
-								<a href={data.social.twitter} target="_blank" rel="noopener" aria-label={`${data.title} on Twitter`}>
+								<a
+									href={data.social.twitter}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={`${data.title} on Twitter`}
+								>
 									<Twitter />
 								</a>
 							)}
 						</p>
 
-						{false && (<hr />)}
+						{false && <hr />}
 
 						{false && (
 							<p className="uppercase">
 								<a href="http://bluehat.com.au/">
-									<span className="text-gray-50">Website design by </span>Bluehat
+									<span className="text-gray-50">Website design by </span>
+									Bluehat
 								</a>
 							</p>
 						)}
-					
 					</div>
 				</div>
 			</div>

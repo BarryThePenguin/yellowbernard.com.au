@@ -15,6 +15,7 @@
     "start": "tinacms server:start -c \"next start\""
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^12.0.2",
     "@tailwindcss/typography": "^0.4.1",
     "@tinacms/auth": "^0.50.1",
     "autoprefixer": "^10.0.4",
