@@ -35,18 +35,12 @@ const Layout = ({data = layoutData, children}: LayoutProps) => (
 		<Head>
 			<meta name="theme-color" content="#FFEA00" />
 		</Head>
-		<div id="fb-root" />
-		<script
-			async
-			defer
-			crossOrigin="anonymous"
-			src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0"
-			nonce="FQlOK0e0"
-		/>
+		
+		<div className="fixed h-screen w-screen">
+			<Image src={data.background} layout="fill" objectFit="cover" />
+		</div>
 
-		<Image src={data.background} layout="fill" objectFit="cover" />
-
-		<div className="container sticky top-0 lg:max-w-screen-lg mx-auto mb-48">
+		<div className="container lg:max-w-screen-lg mx-auto mb-48">
 			<Image src={data.logo} width="200px" height="111px" />
 		</div>
 
