@@ -11,17 +11,14 @@ const App = ({Component, pageProps}: AppProps) => (
 		editMode={
 			<Tina pageProps={pageProps}>
 				{(livePageProps) => (
-					<Layout
-						rawData={livePageProps}
-						data={livePageProps.data?.getGlobalDocument?.data}
-					>
+					<Layout data={livePageProps.data?.getGlobalDocument?.data}>
 						<Component {...livePageProps} />
 					</Layout>
 				)}
 			</Tina>
 		}
 	>
-		<Layout rawData={pageProps} data={pageProps.data?.getGlobalDocument?.data}>
+		<Layout data={pageProps.data?.getGlobalDocument?.data}>
 			<Component {...pageProps} />
 		</Layout>
 	</TinaEditProvider>

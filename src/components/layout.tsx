@@ -10,7 +10,6 @@ const EmailUs = dynamic(async () => import('./email-us'), {ssr: false});
 
 type LayoutProps = {
 	data: any;
-	rawData: any;
 	children: React.ReactNode;
 };
 
@@ -35,13 +34,13 @@ const Layout = ({data = layoutData, children}: LayoutProps) => (
 		<Head>
 			<meta name="theme-color" content="#FFEA00" />
 		</Head>
-		
+
 		<div className="fixed h-screen w-screen">
-			<Image src={data.background} layout="fill" objectFit="cover" />
+			<Image src={data.background} layout="fill" objectFit="cover" alt="" />
 		</div>
 
 		<div className="container lg:max-w-screen-lg mx-auto mb-48">
-			<Image src={data.logo} width="200px" height="111px" />
+			<Image src={data.logo} width="200px" height="111px" alt={data.title} />
 		</div>
 
 		<div className="relative bg-gradient-to-t via-black from-black">
