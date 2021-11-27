@@ -1,0 +1,24 @@
+fragment PagesParts on Pages {
+  description
+  openingTimes
+  address
+  phone
+  background
+  map
+}
+
+fragment GlobalParts on Global {
+  title
+  logo
+  background
+  seoDefaultTitle
+  description
+  siteUrl
+  keywords
+  social {
+    __typename
+    facebook
+    twitter
+    instagram
+  }
+}

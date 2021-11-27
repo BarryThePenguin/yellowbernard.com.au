@@ -147,8 +147,8 @@ type GlobalConnection implements Connection {
 
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
-  updateDocument(collection: String!, relativePath: String!, params: DocumentMutation!): DocumentNode!
-  createDocument(collection: String!, relativePath: String!, params: DocumentMutation!): DocumentNode!
+  updateDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
+  createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   updatePagesDocument(relativePath: String!, params: PagesMutation!): PagesDocument!
   createPagesDocument(relativePath: String!, params: PagesMutation!): PagesDocument!
   updateGlobalDocument(relativePath: String!, params: GlobalMutation!): GlobalDocument!
