@@ -5,5 +5,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withBundleAnalyzer({
 	images: {
 		domains: ['res.cloudinary.com']
+	},
+	i18n: {
+		locales: ['en-AU'],
+		defaultLocale: 'en-AU'
 	}
 });
