@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^12.0.4",
-    "@tailwindcss/typography": "^0.4.1",
+    "@tailwindcss/typography": "^0.5.9",
     "@tinacms/auth": "^0.50.2",
     "autoprefixer": "^10.0.4",
     "final-form": "^4.20.1",
