@@ -61,16 +61,17 @@ function Index(props: IndexProps) {
 
 export default Index;
 
-export const getStaticProps: GetStaticProps<IndexProps> = async function () {
-	let pageProps = {};
+export const getStaticProps: GetStaticProps<Partial<IndexProps>> =
+	async function () {
+		let pageProps = {};
 
-	try {
-		pageProps = await client.queries.pageQuery({relativePath: 'home.json'});
-	} catch {}
+		try {
+			pageProps = await client.queries.pageQuery({relativePath: 'home.json'});
+		} catch {}
 
-	return {
-		props: {
-			...pageProps,
-		},
+		return {
+			props: {
+				...pageProps,
+			},
+		};
 	};
-};
