@@ -5,16 +5,16 @@ const validationMessages = {
 	name: {valueMissing: 'Please enter your name'},
 	email: {valueMissing: 'Please enter your email'},
 	phone: {valueMissing: 'Please enter your phone number'},
-	message: {valueMissing: 'Please enter your message'}
+	message: {valueMissing: 'Please enter your message'},
 };
 
-export const EmailUsForm = () => {
+export function EmailUsForm() {
 	const {formState, handleSubmit, handleBlur} = useForm({
 		validationMessages,
 		async onSubmit(data: FormData) {
 			const json = Object.fromEntries(data.entries());
 			return ky.post('/api/email-us', {json});
-		}
+		},
 	});
 
 	return (
@@ -100,27 +100,29 @@ export const EmailUsForm = () => {
 			</div>
 		</div>
 	);
-};
+}
 
-const EmailUs = () => (
-	<div
-		id="email-us"
-		className="email-us__overlay"
-		aria-modal="true"
-		role="dialog"
-	>
-		<div className="fixed inset-0 transition-opacity">
-			<a
-				className="absolute cursor-default inset-0 bg-black bg-opacity-80"
-				href="#"
-				aria-label="Close"
-			/>
+function EmailUs() {
+	return (
+		<div
+			id="email-us"
+			className="email-us__overlay"
+			aria-modal="true"
+			role="dialog"
+		>
+			<div className="fixed inset-0 transition-opacity">
+				<a
+					className="absolute cursor-default inset-0 bg-black bg-opacity-80"
+					href="#"
+					aria-label="Close"
+				/>
+			</div>
+
+			<a className="email-us__close-button" href="#" aria-label="Close" />
+
+			<EmailUsForm />
 		</div>
-
-		<a className="email-us__close-button" href="#" aria-label="Close" />
-
-		<EmailUsForm />
-	</div>
-);
+	);
+}
 
 export default EmailUs;

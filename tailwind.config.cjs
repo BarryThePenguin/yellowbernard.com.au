@@ -1,14 +1,14 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-	purge: ['./src/**/*.tsx'],
-	darkMode: false,
+	content: ['./src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		fontFamily: {
-			sans: ['"Lucida Sans Unicode"', '"Lucida Grande"', 'sans-serif']
+			sans: ['"Lucida Sans Unicode"', '"Lucida Grande"', 'sans-serif'],
 		},
 		extend: {
 			colors: {
 				primary: '#ffea00',
-				secondary: '#333333'
+				secondary: '#333333',
 			},
 			typography: (theme) => ({
 				DEFAULT: {
@@ -20,27 +20,27 @@ module.exports = {
 							textDecoration: 'none',
 							'&:hover': {
 								color: theme('colors.primary'),
-								textDecoration: 'underline'
-							}
+								textDecoration: 'underline',
+							},
 						},
 						strong: {
-							color: theme('colors.primary')
-						}
-					}
+							color: theme('colors.primary'),
+						},
+					},
 				},
 				sm: {
 					css: {
 						hr: {
 							marginTop: theme('spacing.4'),
-							marginBottom: theme('spacing.4')
-						}
-					}
-				}
-			})
-		}
+							marginBottom: theme('spacing.4'),
+						},
+					},
+				},
+			}),
+		},
 	},
 	variants: {
-		extend: {}
+		extend: {},
 	},
-	plugins: [require('@tailwindcss/typography')]
+	plugins: [require('@tailwindcss/typography')],
 };

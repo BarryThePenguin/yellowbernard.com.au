@@ -1,30 +1,41 @@
-import {GetStaticProps} from 'next';
+import {type GetStaticProps} from 'next';
 import Image from 'next/image';
-import {getStaticPropsForTina} from 'tinacms';
-import {layoutQueryFragment} from '../components/layout';
+import {useTina} from 'tinacms/dist/react';
+import Layout from '../components/layout';
+import {client} from '../../.tina/__generated__/client';
+import type {
+	PageQueryQuery,
+	PageQueryQueryVariables,
+} from '../../.tina/__generated__/types';
 
 type IndexProps = {
-	data: any;
+	data: PageQueryQuery;
+	query: string;
+	variables: PageQueryQueryVariables;
 };
 
-const Index = (props: IndexProps) => {
-	const {data} = props.data.getPagesDocument;
+function Index(props: IndexProps) {
+	const {data} = useTina({
+		query: props.query,
+		variables: props.variables,
+		data: props.data,
+	});
 
 	return (
-		<>
+		<Layout background={data.pages.background} data={data.global}>
 			<hr />
 
-			<p>{data.description}</p>
+			<p>{data.pages.description}</p>
 
 			<hr />
 
 			<div className="uppercase">
 				<p>
-					<span className="block">{data.openingTimes}</span>
+					<span className="block">{data.pages.openingTimes}</span>
 
-					<span className="block">{data.address}</span>
+					<span className="block">{data.pages.address}</span>
 
-					<span className="block">{data.phone}</span>
+					<span className="block">{data.pages.phone}</span>
 
 					<span className="block">
 						<a href="#email-us" id="email-link">
@@ -36,44 +47,30 @@ const Index = (props: IndexProps) => {
 
 			<hr />
 
-			<Image
-				src={data.map}
-				alt="Map to Yellow Bernard"
-				width="238"
-				height="164"
-			/>
-		</>
+			{data.pages.map && (
+				<Image
+					src={data.pages.map}
+					alt="Map to Yellow Bernard"
+					width="238"
+					height="164"
+				/>
+			)}
+		</Layout>
 	);
-};
+}
 
 export default Index;
 
 export const getStaticProps: GetStaticProps<IndexProps> = async function () {
-	const tinaProps = await getStaticPropsForTina({
-		query: `#graphql
-		query HomePage($relativePath: String!) {
-			${layoutQueryFragment}
-			getPagesDocument(relativePath: $relativePath) {
-				id
-				data {
-					description
-					openingTimes
-					address
-					phone
-					background
-					map
-				}
-			}
-		}
-		`,
-		variables: {
-			relativePath: 'home.md'
-		}
-	});
+	let pageProps = {};
+
+	try {
+		pageProps = await client.queries.pageQuery({relativePath: 'home.json'});
+	} catch {}
 
 	return {
 		props: {
-			...tinaProps
-		}
+			...pageProps,
+		},
 	};
 };

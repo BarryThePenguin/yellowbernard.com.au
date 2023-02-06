@@ -1,3 +1,4 @@
+next-env.d.ts
 node_modules
 .next
 .env*
@@ -6,3 +7,4 @@ out/
 .next/
 .DS_Store
 .log
+.vercel

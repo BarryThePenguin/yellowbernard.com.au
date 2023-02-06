@@ -1,13 +1,24 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-	enabled: process.env.ANALYZE === 'true'
+import process from 'node:process';
+import bundleAnalyzer from '@next/bundle-analyzer';
+
+const withBundleAnalyzer = bundleAnalyzer({
+	enabled: process.env.ANALYZE === 'true',
 });
 
-module.exports = withBundleAnalyzer({
+export default withBundleAnalyzer({
 	images: {
-		domains: ['res.cloudinary.com']
+		domains: ['assets.tina.io'],
 	},
 	i18n: {
 		locales: ['en-AU'],
-		defaultLocale: 'en-AU'
-	}
+		defaultLocale: 'en-AU',
+	},
+	rewrites() {
+		return [
+			{
+				source: '/admin',
+				destination: '/admin/index.html',
+			},
+		];
+	},
 });

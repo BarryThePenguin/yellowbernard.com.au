@@ -1,4 +1,4 @@
-import {useCallback, useReducer, FormEvent} from 'react';
+import {useCallback, useReducer, type FormEvent} from 'react';
 
 type ValidationMessages = Record<
 	string,
@@ -22,35 +22,46 @@ const initialState = {
 	isSubmitting: false,
 	isSubmitted: false,
 	isSubmitSuccessful: false,
-	message: ''
+	message: '',
 };
 
 type State = typeof initialState;
 
 function reducer(state: State, action: ActionType) {
 	switch (action.type) {
-		case 'submit':
+		case 'submit': {
 			return {...state, isSubmitting: true, isValid: true};
-		case 'valid':
+		}
+
+		case 'valid': {
 			return {...state, isValid: true};
-		case 'invalid':
+		}
+
+		case 'invalid': {
 			return {
 				...state,
 				isSubmitting: false,
 				isValid: false,
-				message: action.message
+				message: action.message,
 			};
-		case 'submit-success':
+		}
+
+		case 'submit-success': {
 			return {...state, isSubmitting: false, isSubmitSuccessful: true};
-		case 'submit-error':
+		}
+
+		case 'submit-error': {
 			return {...state, isSubmitting: false, isSubmitSuccessful: true};
-		default:
+		}
+
+		default: {
 			return state;
+		}
 	}
 }
 
 function isInputField(
-	element: unknown
+	element: unknown,
 ): element is HTMLInputElement | HTMLTextAreaElement {
 	return (
 		element instanceof HTMLInputElement ||
@@ -73,7 +84,7 @@ type ValidateResult = ValidateSuccess | ValidateError;
 function validateField(
 	form: HTMLFormElement,
 	field: string,
-	messages: ValidationMessages
+	messages: ValidationMessages,
 ): ValidateResult {
 	const inputField = form.elements.namedItem(field);
 
@@ -88,7 +99,7 @@ function validateField(
 		return {
 			valid: inputField.validity.valid,
 			inputField,
-			message: inputField.validationMessage
+			message: inputField.validationMessage,
 		};
 	}
 
@@ -97,7 +108,7 @@ function validateField(
 
 function validateForm(
 	form: HTMLFormElement,
-	messages: ValidationMessages
+	messages: ValidationMessages,
 ): ValidateResult {
 	const valid = form.checkValidity();
 
@@ -143,7 +154,7 @@ function useForm({onSubmit, validationMessages}: UseFormOptions) {
 				result.inputField.focus();
 			}
 		},
-		[dispatch, onSubmit, validationMessages]
+		[dispatch, onSubmit, validationMessages],
 	);
 
 	const handleBlur = useCallback(
@@ -152,7 +163,7 @@ function useForm({onSubmit, validationMessages}: UseFormOptions) {
 				const result = validateField(
 					event.currentTarget,
 					event.target.name,
-					validationMessages
+					validationMessages,
 				);
 
 				if (result.valid) {
@@ -162,13 +173,13 @@ function useForm({onSubmit, validationMessages}: UseFormOptions) {
 				}
 			}
 		},
-		[dispatch, validationMessages]
+		[dispatch, validationMessages],
 	);
 
 	return {
 		handleBlur,
 		handleSubmit,
-		formState
+		formState,
 	};
 }
 

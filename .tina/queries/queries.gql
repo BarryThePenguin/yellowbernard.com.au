@@ -1,0 +1,6 @@
+query pageQuery($relativePath: String!) {
+	...LayoutQueryFragment
+	pages(relativePath: $relativePath) {
+		...PagesParts
+	}
+}

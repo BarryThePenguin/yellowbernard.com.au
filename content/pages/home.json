@@ -1,0 +1,21 @@
+{
+    "description": "Yellow Bernard is a small, specialty café located in the centre of Hobart's business district.\n\nWe are driven by a passion for quality coffee. Our aim is to share that passion by striving to produce remarkable coffee.",
+    "openingTimes": "Monday - Friday | 7 - 2",
+    "address": "109 Collins Street, Hobart",
+    "phone": "(03) 6231 5207",
+    "map": "/uploads/map.png",
+    "seo": {
+        "title": "Yellow Bernard",
+        "logo": "/uploads/logo.png",
+        "background": "/uploads/bg.jpg",
+        "seoDefaultTitle": "Specialty coffee in Hobart CBD.",
+        "description": "We make the tastiest coffee we can in Hobart's CBD.",
+        "siteUrl": "https://yellowbernard.com.au",
+        "keywords": "hobart, coffee"
+    },
+    "social": {
+        "facebook": "https://www.facebook.com/yellowbernard",
+        "twitter": "https://twitter.com/yellowbernard",
+        "instagram": "https://www.instagram.com/yellowbernard/"
+    }
+  }
